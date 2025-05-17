@@ -1,7 +1,7 @@
 import pandas as pd
 from utils.extract import scrape_products
 from utils.transform import clean_and_transform
-from utils.load import save_to_csv, save_to_google_sheets
+from utils.load import save_to_csv, save_to_google_sheets, save_to_postgresql
 
 def main():
     try:
@@ -22,13 +22,27 @@ def main():
         # print("[INFO] Data successfully saved to 'products.csv'.")
 
         # Save to Google Sheets
-        service_account_path = "google-sheets-api.json"  # Sesuaikan path Anda
-        sheet_name = "ETL Products Data"                      # Nama Google Sheet
-        try:
-            save_to_google_sheets(df_clean, sheet_name, service_account_path)
-        except Exception as e:
-            print(f"[ERROR] Upload to Google Sheets failed: {e}")
+        # service_account_path = "google-sheets-api.json"  # Sesuaikan path Anda
+        # sheet_name = "ETL Products Data"                      # Nama Google Sheet
+        # try:
+        #     save_to_google_sheets(df_clean, sheet_name, service_account_path)
+        # except Exception as e:
+        #     print(f"[ERROR] Upload to Google Sheets failed: {e}")
 
+        # Save to PostgreSQL
+        db_config = {
+            'dbname': 'fashion',
+            'user': 'postgres',
+            'password': '@EgojihJiau02',
+            'host': 'localhost',
+            'port': 5432
+        }
+        table_name = 'products'
+
+        try:
+            save_to_postgresql(df_clean, db_config, table_name)
+        except Exception as e:
+            print(f"[ERROR] Upload to PostgreSQL failed: {e}")
 
 
 

@@ -39,46 +39,44 @@ def save_to_google_sheets(df: pd.DataFrame, sheet_name: str, service_account_pat
     print(f"[INFO] Data successfully saved to Google Sheets: {sheet_name}.")
     print(f"Link: https://docs.google.com/spreadsheets/d/{sh.id}")
 
+def save_to_postgresql(df: pd.DataFrame, db_config: dict, table_name: str):
+    if df.empty:
+        print(f"[WARN] DataFrame is empty. Skipped saving to PostgreSQL.")
+        return
 
-# def save_to_postgresql(df: pd.DataFrame, db_config: dict, table_name: str):
-#     """
-#     Simpan DataFrame ke PostgreSQL.
+    try:
+        conn = psycopg2.connect(**db_config)
+        cursor = conn.cursor()
 
-#     Parameter:
-#     - db_config = {
-#         'dbname': '',
-#         'user': '',
-#         'password': '',
-#         'host': '',
-#         'port': 5432
-#       }
-#     """
-#     conn = psycopg2.connect(**db_config)
-#     cursor = conn.cursor()
+        create_table_query = f"""
+        CREATE TABLE IF NOT EXISTS {table_name} (
+            title TEXT,
+            price FLOAT,
+            rating FLOAT,
+            colors INTEGER,
+            size TEXT,
+            gender TEXT,
+            timestamp TIMESTAMP
+        );
+        """
+        cursor.execute(create_table_query)
+        conn.commit()
 
-#     # Buat tabel jika belum ada (optional, tergantung kebutuhan)
-#     create_table_query = f"""
-#     CREATE TABLE IF NOT EXISTS {table_name} (
-#         title TEXT,
-#         price FLOAT,
-#         rating FLOAT,
-#         colors INTEGER,
-#         size TEXT,
-#         gender TEXT
-#     );
-#     """
-#     cursor.execute(create_table_query)
-#     conn.commit()
+        df = df[['Title', 'Price', 'Rating', 'Colors', 'Size', 'Gender', 'timestamp']]
 
-#     # Siapkan data sebagai list of tuples
-#     records = df.to_records(index=False)
-#     data = list(records)
+        records = df.to_records(index=False)
+        data = [tuple(map(lambda x: x.item() if hasattr(x, 'item') else x, record)) for record in records]
 
-#     # Insert data ke tabel
-#     insert_query = f"INSERT INTO {table_name} (title, price, rating, colors, size, gender) VALUES %s"
-#     execute_values(cursor, insert_query, data)
-#     conn.commit()
+        insert_query = f"""
+        INSERT INTO {table_name} 
+        (title, price, rating, colors, size, gender, timestamp) 
+        VALUES %s
+        """
+        execute_values(cursor, insert_query, data)
+        conn.commit()
 
-#     cursor.close()
-#     conn.close()
-#     print(f"Data berhasil disimpan ke PostgreSQL: {table_name}")
+        cursor.close()
+        conn.close()
+        print(f"[INFO] Data successfully saved to table: {table_name}.")
+    except Exception as e:
+        print(f"[ERROR] Saving to PostgreSQL failed: {e}")
