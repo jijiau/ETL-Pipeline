@@ -18,16 +18,17 @@ def main():
 
         print("[INFO] Data Types:\n", df_clean.dtypes)
 
-        # save_to_csv(df_clean, "products.csv")
-        # print("[INFO] Data successfully saved to 'products.csv'.")
+        # Save to CSV
+        save_to_csv(df_clean, "products.csv")
+        print("[INFO] Data successfully saved to 'products.csv'.")
 
         # Save to Google Sheets
-        # service_account_path = "google-sheets-api.json"  # Sesuaikan path Anda
-        # sheet_name = "ETL Products Data"                      # Nama Google Sheet
-        # try:
-        #     save_to_google_sheets(df_clean, sheet_name, service_account_path)
-        # except Exception as e:
-        #     print(f"[ERROR] Upload to Google Sheets failed: {e}")
+        service_account_path = "google-sheets-api.json"  # Sesuaikan path Anda
+        sheet_name = "ETL Products Data"                      # Nama Google Sheet
+        try:
+            save_to_google_sheets(df_clean, sheet_name, service_account_path)
+        except Exception as e:
+            print(f"[ERROR] Upload to Google Sheets failed: {e}")
 
         # Save to PostgreSQL
         db_config = {

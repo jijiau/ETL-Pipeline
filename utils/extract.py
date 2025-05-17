@@ -11,16 +11,17 @@ HEADERS = {
         "(KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
     )
 }
-
+    
 def fetching_content(url):
     """Mengambil konten HTML dari URL yang diberikan."""
     try:
         response = requests.get(url, headers=HEADERS)
         response.raise_for_status()
-        return response.content
-    except requests.exceptions.RequestException as e:
-        print(f"Terjadi kesalahan ketika melakukan requests terhadap {url}: {e}")
+        return response.text
+    except Exception as e:
+        print(f"[ERROR] Failed to fetch content: {e}")
         return None
+
 
 def scrape_main(article):
     try:

@@ -31,7 +31,7 @@ def save_to_google_sheets(df: pd.DataFrame, sheet_name: str, service_account_pat
         sh = gc.create(sheet_name)
         # Share akses ke publik sebagai editor
         sh.share(None, perm_type='anyone', role='writer')
-
+    
     worksheet = sh.get_worksheet(0) or sh.sheet1
     worksheet.clear()  # hapus isi sheet sebelum upload baru
 
