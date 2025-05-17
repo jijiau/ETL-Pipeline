@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "etlpipeline-460101",
+  "private_key_id": "7e6a8f5bb2d50523cf6c9a58fdc5718266a29001",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCnz1R50s5nl6jz\nibKrUE75YYhq8tWAxesDdqKaKE5zz1PdWd9Eb5s3/Q8NeUUE83UtdRIAuMebk1Gl\nCO+WdIffT+kC3uk9D2eBpvXNBuS+1ddNuceXRn8vbyuspSZYD5Nd/b3MC50PpFCw\nxIRhe14JujJHZ27wVIYYMFG0LeKITHkz+ks+P1kL54sln3k4wkFMHyxG0fmZuPZZ\nXGSZWSFuxINGzJA4e4NMPDfRk6oMOnhIr2wFDGWsBRVok8hCMgUQG2sgOmUaMcls\nTK5kIltcQsAWZC78E/bAXwOuYT1ApPD3aD6pRIRU+RtxXB3dX6Zv+4oFG6q79/Ng\ncHD5LEe7AgMBAAECggEACk60YCVAM2G/6XGgTWCJ8Ux53iPbVGUTyessEq7+HqPy\nAUsnaSM31AkRtyCnSiYQIQIrYGr5K8exQKNbYBD5VZCpfdkmV29OSsrwFy9gto4Z\nAvex2EtmvYmlE54zTD5srV3MHi/qbk8H+8ueXASBYrSSqQsj59QxRmQVaK1W2EtM\nhy2dU1AGX5tTB3IRK3SVkv63Cw6ApNV8kC+rk9f5gbRJbCZ8Ba5YQGeqYvnKkeao\nNTCB18djCRZqvu5T8dAg1nbt+ZWNKNuAl2+mX03cw1uz08039GDtJA7SAFqNWnby\nTwV9DQWs7pxn7+p5chazDKDJCatlr2Ux3f3Aoq/iRQKBgQDtGacxtfiPhk6AU5ub\n53ner4gr+qxtb/SJNW2faTQp2Aw+wQ/TvySReUK47S6nvGc7FpbKRPPfnAVddgr2\nSeDDJzuJWR3nGk8dRLAJ9Bv6jDPl0QZT2Wm1kgxM9pN8YxCLnlTBGcedOweE+fE5\nYr4Jb0h4C99I/1WjGzJFjFLjNQKBgQC1L7cR+B36vFcWBxQjLLtEVer5srjJu61A\nrUAXSayfuLFDotZzAv+iMBUTwhLv89pazwizB6gp8oac/jMJ/OQ/K1BaUggwpH1e\nmuS9Lca3OUcG0Zb6vFlUSsi91FqylmX0V6h87IMrcoJr3pLWtPA1GaObLohCZd3q\nsracFjttLwKBgHl0/rT0ZtP/FQ+fxMLknQV6HeOJkfKtuzLeb72Ngu88gWlUNOtf\nqzfqSke5GIFMfgVC2RPcpqERp53s7kikJ8NQwarmP+83BvgTS6qNphd+4scDgJ5L\nbV9Z5Xs3hO3fQYaEIR6aOitNJdj0wKGI95iVrSXxzvvx8MiREfuWmo9RAoGALYlT\ncmGwby7cmD2pMvnwCsmpJ55iUNkpPuMMA45Ro0bQzlXjnb44LzP0aCXTipj33PDB\nl/Upr3kzmctNWopDdxjUtg593nPIynkVWfJiSfRMRItybYvey4+MCiGPteiUsSdC\nwjrS8J1z59Zlgy6wXDgYZUz5k+50KqNFv87amqMCgYEAsPUb00tiOquH2rMq2GDn\ngrWOuTQlX+BPxxpxBC0O7OUSxdwMkDKtA1wOBBQ0E4cBijptjqqJFComTSS2gwsj\njTv5NRl1DNP7PZLjKqCs3w6ZADJ+pcU3ArnLHI/oVIlyrkgXhFF35VOWXfh0P+wl\n5fo1CfFNsFNK4ER5ZX9TBdk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "etlpipeline@etlpipeline-460101.iam.gserviceaccount.com",
+  "client_id": "103696968255609408450",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/etlpipeline%40etlpipeline-460101.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

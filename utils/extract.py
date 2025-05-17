@@ -65,38 +65,50 @@ def scrape_main(article):
         return None
 
 def scrape_products():
-    """Fungsi utama scraping seluruh halaman produk"""
     data = []
-
     for page in range(1, 51):
-        # Halaman 1 tidak pakai /page1
         url = 'https://fashion-studio.dicoding.dev' if page == 1 else f'https://fashion-studio.dicoding.dev/page{page}'
-        print(f"Scraping halaman: {url}")
+        try:
+            content = fetching_content(url)
+            if not content:
+                print(f"[WARN] Page {page} skipped: Empty content.")
+                continue
+        except Exception as e:
+            print(f"[ERROR] Failed to fetch content from page {page}: {e}")
+            continue
 
-        content = fetching_content(url)
-        if not content:
-            print("Gagal mendapatkan konten, hentikan scraping.")
-            break
-
-        soup = BeautifulSoup(content, "html.parser")
-        articles = soup.select("div.product-details")
+        try:
+            soup = BeautifulSoup(content, "html.parser")
+            articles = soup.select("div.product-details")
+        except Exception as e:
+            print(f"[ERROR] Failed to parse HTML on page {page}: {e}")
+            continue
 
         for article in articles:
-            result = scrape_main(article)
-            if result:
-                data.append(result)
+            try:
+                result = scrape_main(article)
+                if result:
+                    data.append(result)
+            except Exception as e:
+                print(f"[ERROR] Failed to scrape product on page {page}: {e}")
+                continue
 
-        time.sleep(1)  # jeda antar request
+        time.sleep(1)  # Delay to avoid hitting server too quickly
+
+    if not data:
+        print("[ERROR] No data scraped.")
+    else:
+        print(f"[INFO] Successfully scraped {len(data)} products.")
 
     return data
 
-def main():
-    """Fungsi utama"""
-    all_data = scrape_products()
-    df = pd.DataFrame(all_data)
-    df.to_csv("products.csv", index=False)
-    print(f"Total data yang berhasil diambil: {len(df)}")
-    print(df.head())
+# def main():
+#     """Fungsi utama"""
+#     all_data = scrape_products()
+#     df = pd.DataFrame(all_data)
+#     df.to_csv("products.csv", index=False)
+#     print(f"Total data yang berhasil diambil: {len(df)}")
+#     print(df.head())
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
